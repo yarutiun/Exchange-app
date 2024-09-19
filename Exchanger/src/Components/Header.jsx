@@ -11,6 +11,7 @@ const Header = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      try{
       const response_eur = await fetch(
         `https://v6.exchangerate-api.com/v6/${token}/pair/EUR/UAH`
       );
@@ -23,6 +24,9 @@ const Header = () => {
         uah_to_eur: data_eur.conversion_rate,
         uah_to_usd: data_usd.conversion_rate,
       });
+    } catch (error) {
+      console.log(error);
+    }
     };
     fetchData();
   }, []);
